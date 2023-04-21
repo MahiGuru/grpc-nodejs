@@ -1,0 +1,36 @@
+{
+  "name": "verition-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "proto-gen" : "npx rimraf src/proto/generated && yarn proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/proto/generated src/proto/user.proto",
+    "build": "npx rimraf ./dist && tsc && cp ./src/proto/*.proto ./dist/proto",
+    "start": "cross-env NODE_ENV=production node ./dist/server.js",
+    "watch": "tsc --watch",
+    "nodemon": "cross-env NODE_ENV=development nodemon ./dist/server.js",
+    "dev": "yarn build && concurrently \"yarn:watch\" \"yarn:nodemon\"",
+    "prettier": "prettier --write \"**/*.{ts, js, json, yml}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.15.12",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.7",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.14",
+    "@grpc/proto-loader": "^0.7.6",
+    "concurrently": "^8.0.1"
+  }
+}
