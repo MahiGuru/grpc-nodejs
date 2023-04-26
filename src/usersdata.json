@@ -1,0 +1,39 @@
+[
+    
+    {
+        "id": 1,
+        "name": "Lav Patel",
+        "location": "Gujarat",
+        "username": "lav_p",
+        "password": "lav123$",
+        "email": "lavpatel.p@gmail.com",
+        "phone": "9876633333"
+    },
+    {
+        "id": 2,
+        "name": "Mahepal",
+        "location": "Hyderbad",
+        "username": "mahepal_g",
+        "password": "mahepal123$",
+        "email": "mahepal.g@gmail.com",
+        "phone": "9441016550"
+    },
+    {
+        "id": 3,
+        "name": "Srinivas",
+        "location": "Begalore",
+        "username": "srinivas_k",
+        "password": "srinivas123$",
+        "email": "srinivas.k@gmail.com",
+        "phone": "7341016550"
+    },
+    {
+        "id": 4,
+        "name": "Ranjith",
+        "location": "Delhi",
+        "username": "ranjith_m",
+        "password": "ranjith123$",
+        "email": "ranjith.m@gmail.com",
+        "phone": "8765422622"
+    }
+]

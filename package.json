@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "proto-gen" : "npx rimraf src/proto/generated && yarn proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/proto/generated src/proto/user.proto",
+    "proto-gen": "npx rimraf src/proto/generated && yarn proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/proto/generated src/proto/user.proto",
+    "generate-js-protos": "./src/generate-js-files.sh",
     "build": "npx rimraf ./dist && tsc && cp ./src/proto/*.proto ./dist/proto",
     "start": "cross-env NODE_ENV=production node ./dist/server.js",
     "watch": "tsc --watch",
@@ -23,6 +24,8 @@
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "grpc_tools_node_protoc_ts": "^5.3.3",
+    "grpc-tools": "^1.12.4",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.7",
     "rimraf": "^5.0.0",
@@ -31,6 +34,7 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.8.14",
     "@grpc/proto-loader": "^0.7.6",
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "google-protobuf": "^3.21.2"
   }
 }
