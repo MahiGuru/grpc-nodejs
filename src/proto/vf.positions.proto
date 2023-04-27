@@ -1,0 +1,93 @@
+﻿syntax = "proto3";
+
+import "vf.proto";
+
+option java_multiple_files = true;
+
+package vf.positions;
+
+message PositionsRequest {
+  option (vf.Topic) = "/vf/positions";
+  vf.dateTime asOfDate = 1;
+  string vertInvCode = 2;
+  string podCode = 3;
+  string fundCode= 4;
+  string strategyCode = 5;
+  string counterPartyCode = 6;
+  string longShort = 7;
+  string account = 8;
+  string subAccount = 9;
+  bool isActive = 10;
+}
+
+/*
+message PositionsResponse {
+  repeated Position Positions = 1;
+}
+message Position {
+  int32 ID = 1;
+  string POD_CODE = 2;
+  string FUND_CODE = 3;
+  google.protobuf.Timestamp ASOF_DATE = 4;
+  string VERT_INVESTMENT_CODE = 5;
+  string VERT_INVESTMENT_DESC = 6;
+  google.protobuf.Int32Value NT_SECURITY_ID = 7;
+  string NT_INSTRUMENT_CODE = 8;
+  string NT_INSTRUMENT_DESC = 9;
+  string NT_TRS_INSTRUMENT_CODE = 10;
+  string NT_TRS_INSTRUMENT_DESC = 11;
+  string NOTIONAL_DESC = 12;
+  string FINANCIAL_TYPE = 13;
+  string POSITION_BLOCK_ID = 14;
+  string STRATEGY_CODE = 15;
+  string NT_CPTY_CODE = 16;
+  string NT_CPTY_DESC = 17;
+  string CPTY_CODE = 18;
+  string SIDE_POCKET = 19;
+  string SIDE_POCKET_DESCRIPTION = 20;
+  string CCY = 21;
+  string LONG_SHORT = 22;
+  string ACCOUNT = 23;
+  string SUB_ACCOUNT = 24;
+  string SWAP_TYPE = 25;
+  double TD_QUANTITY = 26;
+  double TD_CURRENT_QUANTITY = 27;
+  double TRADE_FACTOR = 28;
+  double PRICE = 29;
+  double ORIGINAL_FACE = 30;
+  double CURRENT_FACE = 31;
+  double COMMITMENT_AMOUNT = 32;
+  double FUNDED_AMOUNT = 33;
+  double UNFUNDED_AMOUNT = 34;
+  double LOCAL_MKT_VAL = 35;
+  double FX_RATE = 36;
+  double BOOK_MKT_VAL = 37;
+  string PRICE_SOURCE = 38;
+  int32 PRICE_SOURCE_ID = 39;
+  string PRICE_EVIDENCE_TYPE = 40;
+  double PRICE_CURR_CONV_RATIO = 41;
+  string PRICE_CCY = 42;
+  string CUSTOM_COLUMN2 = 43;
+  string CUSTOM_COLUMN3 = 44;
+  string CUSTOM_COLUMN8 = 45;
+  string CUSTOM_COLUMN10 = 46;
+  double LOCAL_NOTIONAL_COST = 47;
+  double LOCAL_COST = 48;
+  double LOCAL_COST_FX_RATE = 49;
+  double LOCAL_UNREALIZED = 50;
+  double BOOK_NOTIONAL_COST = 51;
+  double BOOK_COST = 52;
+  double BOOK_COST_FX_RATE = 53;
+  double BOOK_UNREALIZED = 54;
+  double BOOK_UNREALIZED_FX = 55;
+  double LOCAL_ACCRUED_INTEREST = 56;
+  double BOOK_ACCRUED_INTEREST = 57;
+  double LOCAL_NOTIONAL_MKT_VAL = 58;
+  double BOOK_NOTIONAL_MKT_VAL = 59;
+  string IS_ACTIVE = 60;
+  //TimeSpan CREATED_DT = 61;
+  //string CREATED_BY = 62;
+  //TimeSpan LAST_MODIFIED_DT = 63;
+  //string LAST_MODIFIED_BY = 64;
+}
+*/

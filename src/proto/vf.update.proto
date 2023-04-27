@@ -1,0 +1,29 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+import "vf.proto";
+import "vf.row.proto";
+import "vf.select.proto";
+
+option java_multiple_files = true;
+
+package vf.update;
+
+message UpdateRequest {
+	option (vf.Topic) = "/vf/queries";
+	repeated Section sections = 10;
+}
+message UpdateResponse {
+	repeated Status statuses = 10;
+}
+message Section {
+	string dataSetName = 1;
+	map<string, FieldValue> values = 5;
+	map<string, FilterValues> filters = 10;
+	bool validateCommit = 15;
+	int32 maxAffected = 16;
+}
+message Status {
+	string dataSetName = 1;
+	int32 affected = 10;
+}

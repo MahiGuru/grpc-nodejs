@@ -1,0 +1,58 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+option java_multiple_files = true;
+
+package vf;
+
+message Table {
+	string Name = 1;
+	repeated Column Columns = 2;
+}
+message Column {
+	string Name = 1;
+	string Caption = 3;
+	int32 Ordinal = 4;
+
+	bytes Store = 2;
+
+	repeated int32 Nulls = 15;
+
+	Int32S AInt32 = 20;
+	Int64S AInt64 = 21;
+	FloatS AFloat = 22;
+	DoubleS ADouble = 23;
+	DecimalS ADecimal = 24;
+	DateTimeS ADateTime = 25;
+	BoolS ABool = 26;
+	StringS AString = 27;
+	XmlS AXml = 28;
+}
+message Int32S {
+	repeated int32 Store = 20;
+}
+message Int64S {
+	repeated int64 Store = 20;
+}
+message FloatS {
+	repeated float Store = 20;
+}
+message DoubleS {
+	repeated double Store = 20;
+}
+message DecimalS {
+	repeated string Store = 20;
+}
+message DateTimeS {
+	repeated int64 Store = 20;
+}
+message BoolS {
+	repeated bool Store = 20;
+}
+message StringS {
+	repeated string Store = 20;
+}
+message XmlS {
+	repeated string Store = 20;
+}

@@ -1,0 +1,48 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+import "vf.proto";
+
+option java_multiple_files = true;
+
+package vf;
+
+message DataSet {
+	string Code = 10;
+	string Name = 20;
+	string Desc = 30;
+	string Content = 40;
+	bool IsEntitled = 50;
+	bool IsActive = 60;
+}
+message DataSetMetadata {
+	int32 Id = 1;
+	int32 Ordinal = 5;
+	string Parent = 6;
+	string Group = 10;
+	string Owner = 15;
+	string Name = 20;
+	string Type = 25;
+	string Display = 30;
+	string Description = 35;
+	string Format = 36;
+	string Aggregate = 40;
+	string Content = 41;
+	int32 Length = 42;
+	int32 Precision = 43;
+	bool IsRequired = 44;
+	bool IsActive = 45;
+}
+message DataSetRequest {
+	option (vf.Topic) = "/vf/datasets";
+	enum ActionType {
+		get = 0;
+		add = 1;
+		update = 2;
+	}
+	ActionType Action = 1;
+	string Code = 2;
+}
+message DataSetResponse {
+	repeated DataSet Result = 1;
+}

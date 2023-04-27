@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+option java_multiple_files = true;
+
+package vf;
+
+message Row {
+	map<string, FieldValue> Cells = 5;
+}
+message FieldValue {
+	oneof Value {
+		int32 Int32 = 5;
+		double Double = 6;
+		float Float = 7;
+		int64 Int64 = 8;
+		int64 DateTime = 9; //unix epoch in 100th nano seconds
+		string String = 10;
+		bool Bool = 11;
+	}
+}

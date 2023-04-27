@@ -1,0 +1,20 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+import "vf.proto";
+import "vf.row.proto";
+import "vf.table.proto";
+
+option java_multiple_files = true;
+
+package vf.upload;
+
+message UploadRequest {
+	option (vf.Topic) = "/vf/queries";
+	string dataSetName = 1;
+	map<string, FieldValue> fields = 5;
+	Table table = 10;
+}
+message UploadResponse {
+	repeated Table result = 10;
+}

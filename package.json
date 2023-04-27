@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "proto-gen": "npx rimraf src/proto/generated && yarn proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/proto/generated src/proto/user.proto",
+    "proto-gen": "npx rimraf src/proto/generated && yarn proto-loader-gen-types --proto_path=src/proto --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/proto/generated ./src/proto/*.proto",
     "generate-js-protos": "./src/generate-js-files.sh",
     "build": "npx rimraf ./dist && tsc && cp ./src/proto/*.proto ./dist/proto",
     "start": "cross-env NODE_ENV=production node ./dist/server.js",
     "watch": "tsc --watch",
     "nodemon": "cross-env NODE_ENV=development nodemon ./dist/server.js",
     "dev": "yarn build && concurrently \"yarn:watch\" \"yarn:nodemon\"",
-    "prettier": "prettier --write \"**/*.{ts, js, json, yml}\""
+    "prettier": "prettier --write \"**/*.{ts, js, json, yml}\"",
+    "protobuff-generate-js": "protoc --plugin=protoc-gen=./protoc-gen.sh --js_out=import_style=commonjs,binary:./gen-javascript --proto_path=./src/proto src/proto/**.proto"
   },
   "keywords": [],
   "author": "",

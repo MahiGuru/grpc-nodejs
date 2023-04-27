@@ -1,0 +1,54 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/descriptor.proto";
+
+option java_multiple_files = true;
+
+package vf;
+
+extend google.protobuf.MessageOptions {
+	string Topic = 10001;
+}
+message Header {
+	string Topic = 1;
+	string User = 2;
+	string Host = 3;
+	string App = 4;
+	string Token = 5;
+}
+
+message dateTime {
+	bytes Value = 1;
+	int32 Year = 5;
+	int32 Month = 6;
+	int32 Day = 7;
+	int32 Hour = 8;
+	int32 Minute = 9;
+	int32 Second = 10;
+	int32 Millisecond = 11;
+}
+
+message Exception {
+	string Message = 1;
+	string StackTrace = 2;
+}
+
+message Request {
+	Header Header = 1;
+	google.protobuf.Any Input = 2;
+}
+
+message Response {
+	Header Header = 1;
+	google.protobuf.Any Output = 2;
+	Exception Error = 3;
+}
+
+message TopicRequest {
+  option (vf.Topic) = "/vf/topics";
+}
+
+message TopicResponse {
+  repeated string Topics = 1;
+}

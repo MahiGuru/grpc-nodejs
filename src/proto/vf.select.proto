@@ -1,0 +1,149 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+import "vf.proto";
+import "vf.table.proto";
+
+option java_multiple_files = true;
+
+package vf;
+
+message TableRequest {
+  option (vf.Topic) = "/vf/queries";
+	string dataSetName = 1;
+	repeated string columns = 2;
+	vf.dateTime asOfStartDate = 3;
+	vf.dateTime asOfEndDate = 4;
+	map<string,string> filters = 5;
+	map<string,dateTime> dateFilters = 6;
+	int32 pageSize = 7;
+	int32 pageNo = 8;
+}
+
+message TableResponse {
+	bytes Table = 1;
+	Table Table2 = 2;
+}
+
+message FilterValues {
+	repeated FilterValue Values = 1;
+	bool Not = 2;
+}
+message FilterValue {
+	oneof Filter {
+		FilterStringValue String = 1;
+		FilterNumValue Num = 2;
+		FilterNumRangeValue NumRange =  3;
+		FilterBoolValue Bool = 4;
+	}
+}
+message FilterStringValue {
+	enum Operators {
+		Equal = 0;
+//		NotEqual = 1;
+		StartsWith = 12;
+		EndsWith = 13;
+		Contains = 14;
+	}
+	Operators Operator = 1;
+	string Value = 2;
+}
+message FilterBoolValue {
+//	enum Operators {
+//		Equal = 0;
+//		NotEqual = 1;
+//	}
+//	Operators Operator = 1;
+	bool Value = 2;
+}
+message FilterNumValue {
+	enum Operators {
+		Equal = 0;
+//		NotEqual = 1;
+		Greater = 22;
+		GreaterEqual = 23;
+		Lesser = 34;
+		LesserEqual = 35;
+	}
+	Operators Operator = 1;
+	oneof Value {
+		int32 Int32 = 2;
+		double Double = 3;
+		float Float = 4;
+		int64 Int64 = 5;
+		int64 DateTime = 6;
+	}
+}
+message FilterNumRangeValue {
+	FilterNumMinValue MinValue = 1;
+	FilterNumMaxValue MaxValue = 2;
+}
+message FilterNumMinValue {
+	enum Operators {
+		Invalid = 0;
+		Greater = 22;
+		GreaterEqual = 23;
+	}
+	Operators Operator = 1;
+	oneof Value {
+		int32 Int32 = 2;
+		double Double = 3;
+		float Float = 4;
+		int64 Int64 = 5;
+		int64 DateTime = 6;
+	}
+}
+message FilterNumMaxValue {
+	enum Operators {
+		Invalid = 0;
+		Lesser = 34;
+		LesserEqual = 35;
+	}
+	Operators Operator = 1;
+	oneof Value {
+		int32 Int32 = 2;
+		double Double = 3;
+		float Float = 4;
+		int64 Int64 = 5;
+		int64 DateTime = 6;
+	}
+}
+message SelectRequest {
+	option (vf.Topic) = "/vf/queries";
+	string dataSetName = 1;
+	repeated string columns = 2;
+	map<string,FilterValues> filters = 3;
+	repeated GroupField groupBy = 15;
+	repeated SortField orderBy = 20;
+	int32 pageSize = 4;
+	int32 pageNo = 5;
+}
+message SelectResponse {
+	Table Result = 1;
+}
+message SortField {
+	string Name = 1;
+	enum Sort {
+		Ascending = 0;
+		Descending = 10;
+	}
+	Sort Order = 25;
+}
+message GroupField {
+	string Name = 1;
+	string Alias = 2;
+	enum Group {
+		None = 0;
+		Avg = 5;
+		Count = 10;
+		CountDistinct = 11;
+		First = 15;
+		Last = 20;
+		Max = 25;
+		Median = 30;
+		Min = 35;
+		StdDev = 40;
+		Sum = 45;
+	}
+	Group Aggr = 100;
+}

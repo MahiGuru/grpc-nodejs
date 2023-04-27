@@ -1,0 +1,125 @@
+﻿syntax = "proto3";
+
+import "vf.proto";
+
+option java_multiple_files = true;
+
+package vf.VW;
+
+message Item {
+	enum ItemType {
+		folder = 0;
+		view = 1;
+		state = 2;
+		container = 3;
+		setting = 4;
+	}
+	string Parent = 1;
+	string Code = 2;
+	string Name = 3;
+	ItemType Type = 4;
+	string Handler = 5;
+	string Owner = 6;
+	string Content = 7;
+	bool IsActive = 8;
+	bool IsShared = 9;
+	repeated string Actions = 10;
+}
+
+message ItemRequest {
+	option (vf.Topic) = "/vf/vw/item";
+	enum ActionType {
+		get = 0;
+		add = 1;
+		update = 2;
+		launch = 3;
+	}
+	ActionType Action = 1;
+	string Code = 2;
+	string Parent = 3;
+	repeated Item Items = 4;
+}
+
+message ItemResponse {
+	repeated Item Items = 1;
+	Item Setting = 2;
+}
+
+message ItemMetaData {
+	int32 Id = 1;
+	string ItemCode = 2;
+	string FieldName = 3;
+	string FieldType = 4;
+	string DisplayName = 5;
+	string Description = 6;
+	int32 Ordinal = 7;
+	string AggregateType = 8;
+	string Format = 9;
+	int32 FieldLength = 10;
+	int32 FieldPrecision = 15;
+	string FieldGroup = 16;
+	string FieldOwner = 17;
+	bool IsRequired = 20;
+	string Source = 25;
+	bool IsActive = 30;
+}
+
+message GetItemMetaDataRequest {
+	option (vf.Topic) = "/vf/vw/item/metadata";
+	string ItemCode = 1;
+	string ItemCode2 = 2;
+	string ItemCode3 = 3;
+}
+
+message GetItemMetaDataResponse {
+	repeated ItemMetaData MetaData = 1;
+	repeated ItemMetaData MetaData2 = 2;
+	repeated ItemMetaData MetaData3 = 3;
+}
+
+message ItemUserGroup {
+	int32 Id = 1;
+	string ItemCode = 2;
+	string Code = 3;
+	string Name = 4;
+	string Desc = 5;
+	bool IsSelected = 6;
+	//bool IsActive = 7;
+}
+
+message ItemUserGroupRequest {
+	option (vf.Topic) = "/vf/vw/item/usergroup";
+	enum ActionType {
+		get = 0;
+		//add = 1;
+		update = 2;
+		//launch = 3;
+	}
+	ActionType Action = 1;
+	string Code = 2;
+	//string Parent = 3;
+	repeated ItemUserGroup Groups = 4;
+}
+message ItemUserGroupResponse {
+	repeated ItemUserGroup Groups = 1;
+}
+
+message SupportRequest {
+	option (vf.Topic) = "/vf/vw/support";
+	string Subject = 1;
+	string Comments = 2;
+	repeated Image Images = 3;
+	repeated File Logs = 4;
+}
+message File {
+	string Name = 1;
+	bytes Content = 2;
+	dateTime LastModified = 3;
+}
+message Image {
+  string Format = 1;
+  bytes Content = 2;
+}
+message SupportResponse {
+	string message = 1;
+}

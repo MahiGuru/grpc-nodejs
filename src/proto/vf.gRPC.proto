@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+import "vf.proto";
+
+option java_multiple_files = true;
+
+package vf.gRPC;
+
+service session {
+	rpc Process(vf.Request) returns (vf.Response){}
+	rpc ProcessStream(vf.Request) returns (stream vf.Response){}
+}
